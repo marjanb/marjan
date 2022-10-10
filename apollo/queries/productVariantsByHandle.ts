@@ -1,5 +1,5 @@
-import { gql } from "graphql-tag";
-import { productVariants } from "~/apollo/fragments/productVariants";
+import { gql } from 'graphql-tag';
+import { productVariants } from '~~/apollo/fragments/productVariants';
 
 export const productVariantsByHandle = gql`
   ${productVariants}

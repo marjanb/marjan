@@ -5,15 +5,15 @@ interface NavLink {
 
 export const navLinks: NavLink[] = [
   {
-    label: "Home",
-    path: "/",
+    label: 'Home',
+    path: '/',
   },
   {
-    label: "Products",
-    path: "/collections/all",
+    label: 'Products',
+    path: '/collections/all',
   },
   {
-    label: "About",
-    path: "/about",
+    label: 'About',
+    path: '/about',
   },
 ];

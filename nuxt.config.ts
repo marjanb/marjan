@@ -1,4 +1,5 @@
-import { defineNuxtConfig } from "nuxt3";
+import { defineNuxtConfig } from 'nuxt';
+import path from 'path';
 
 export default defineNuxtConfig({
   publicRuntimeConfig: {
@@ -6,12 +7,21 @@ export default defineNuxtConfig({
     SHOPIFY_STOREFRONT_ACCESS_TOKEN:
       process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
   },
-  buildModules: ["@pinia/nuxt", "@vueuse/nuxt"],
+  modules: ['@pinia/nuxt', '@vueuse/nuxt'],
+  alias: {
+    '@': path.resolve(__dirname, './src'),
+    '~': path.resolve(__dirname, './src'),
+    '@@': path.resolve(__dirname, './'),
+    '~~': path.resolve(__dirname, './'),
+    assets: path.resolve(__dirname, './assets'),
+    static: path.resolve(__dirname, './static'),
+  },
   build: {
     transpile: [
-      "@apollo/client",
-      "@vue/apollo-composable",
-      "ts-invariant/process",
+      '@apollo/client',
+      '@vue/apollo-composable',
+      'ts-invariant/process',
+      '@heroicons/vue',
     ],
     postcss: {
       postcssOptions: {
@@ -22,5 +32,5 @@ export default defineNuxtConfig({
       },
     },
   },
-  css: ["~/assets/css/fonts.css", "~/assets/css/global.css"],
+  css: ['~~/assets/css/fonts.css', '~~/assets/css/global.css'],
 });

@@ -19,9 +19,9 @@ interface ProductCard {
   compareAtPriceRange?: PriceRange;
   description?: string;
   handle: string;
-  images: { [key: string]: any };
+  images: { [key: string]: unknown };
   priceRange?: PriceRange;
-  productType?: { [key: string]: any };
+  productType?: { [key: string]: unknown };
   tags: string[];
   title: string;
   variants: object;

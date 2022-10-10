@@ -1,5 +1,8 @@
 <template>
-  <section v-if="cartStore.cartOpen" ref="cart">
+  <section
+    v-if="cartStore.cartOpen"
+    ref="cart"
+  >
     <div
       class="fixed top-0 bottom-0 right-0 z-10 px-4 pb-4 bg-white border-l-2 border-black w-[90vw] md:w-[400px]"
     >
@@ -23,8 +26,8 @@
 </template>
 
 <script setup lang="ts">
-import { onClickOutside } from "@vueuse/core";
-import { useCartStore } from "~/stores/cart";
+import { onClickOutside } from '@vueuse/core';
+import { useCartStore } from '~~/stores/cart';
 
 const cartStore = useCartStore();
 

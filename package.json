@@ -1,9 +1,6 @@
 {
   "name": "nuxtshop",
   "license": "MIT",
-  "engines": {
-    "node": "14"
-  },
   "scripts": {
     "layer0:dev": "layer0 dev",
     "layer0:build": "layer0 build",
@@ -15,28 +12,39 @@
     "deploy": "layer0 deploy"
   },
   "devDependencies": {
-    "@apollo/client": "^3.5.6",
-    "@heroicons/vue": "^1.0.5",
+    "@apollo/client": "^3.7.0",
+    "@heroicons/vue": "^2.0.12",
     "@layer0/cli": "^4.9.0",
     "@layer0/core": "^4.9.0",
     "@layer0/devtools": "^4.9.0",
-    "@layer0/nuxt3": "^4.9.0",
+    "@layer0/nuxt": "^4.19.2",
     "@layer0/prefetch": "^4.9.0",
     "@nuxt/types": "^2.15.8",
-    "@pinia/nuxt": "^0.1.8",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@pinia/nuxt": "^0.4.3",
     "@shopify/theme-images": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "@vue/apollo-composable": "^4.0.0-alpha.16",
-    "@vueuse/nuxt": "^7.4.3",
-    "apollo-cache-inmemory": "^1.6.6",
+    "@vue/eslint-config-standard": "^8.0.1",
+    "@vueuse/nuxt": "^9.3.0",
     "autoprefixer": "^10.4.1",
-    "dotenv": "^10.0.0",
-    "graphql": "^16.2.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.25.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.6.0",
+    "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "node-fetch": "^3.1.0",
-    "nuxt3": "^3.0.0-27414150.3589a2d",
-    "pinia": "^2.0.9",
-    "pinia-plugin-persistedstate-2": "^0.2.8",
+    "nuxt": "^3.0.0-rc.11",
+    "pinia": "^2.0.23",
+    "pinia-plugin-persistedstate-2": "^2.0.1",
     "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.8"
+    "tailwindcss": "^3.0.8",
+    "typescript": "^4.8.4",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "dependencies": {
+    "pinia-plugin-persistedstate": "^2.3.0"
   }
 }

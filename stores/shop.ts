@@ -1,21 +1,21 @@
-import { defineStore } from "pinia";
-import { useApolloClient } from "@vue/apollo-composable";
-import { shopQuery } from "~~/apollo/queries/shop";
+import { defineStore } from 'pinia';
+import { useApolloClient } from '@vue/apollo-composable';
+import { shopQuery } from '~~/apollo/queries/shop';
 
-export const useShopStore = defineStore("shop", {
+export const useShopStore = defineStore('shop', {
   state: () => {
     return {
-      description: "",
+      description: '',
       loading: false,
       localization: {
         country: {
           currency: {
-            isoCode: "USD",
+            isoCode: 'USD',
           },
         },
       },
       menuOpen: false,
-      moneyFormat: "$",
+      moneyFormat: '$',
     };
   },
   actions: {
@@ -29,11 +29,11 @@ export const useShopStore = defineStore("shop", {
         });
 
         if (!data.shop) {
-          throw "getShopData: no response";
+          throw 'getShopData: no response';
         }
 
-        this.description = data?.shop?.description ?? "";
-        this.moneyFormat = data?.shop?.moneyFormat ?? "$";
+        this.description = data?.shop?.description ?? '';
+        this.moneyFormat = data?.shop?.moneyFormat ?? '$';
         this.localization = data?.localization ?? {};
       } catch (e) {
         return e;
@@ -42,7 +42,7 @@ export const useShopStore = defineStore("shop", {
       }
     },
     toggleMenu(state?: boolean) {
-      if (typeof state === "boolean") {
+      if (typeof state === 'boolean') {
         this.menuOpen = state;
       } else {
         this.menuOpen = !this.menuOpen;

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <component v-if="vendor" :is="element">
+    <component
+      :is="element"
+      v-if="vendor"
+    >
       {{ vendor }}
     </component>
   </div>
@@ -13,5 +16,5 @@ const props = defineProps<{
 }>();
 
 const { tag, vendor } = toRefs(props);
-const element = tag.value || "div";
+const element = tag.value || 'div';
 </script>

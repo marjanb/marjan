@@ -1,6 +1,9 @@
 <template>
   <div>
-    <component v-if="title" :is="tag || 'div'">
+    <component
+      :is="tag || 'div'"
+      v-if="title"
+    >
       {{ title }}
     </component>
   </div>

@@ -5,14 +5,17 @@
     @click="handleClick"
     @keyup.enter="handleClick"
   >
-    <ShoppingCartIcon class="w-6" aria-hidden />
+    <ShoppingCartIcon
+      class="w-6"
+      aria-hidden
+    />
   </button>
 </template>
 
 <script setup lang="ts">
-import ShoppingCartIcon from "@heroicons/vue/solid/esm/ShoppingCartIcon.js";
-import { useShopStore } from "~/stores/shop";
-import { useCartStore } from "~/stores/cart";
+import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
+import { useShopStore } from '~~/stores/shop';
+import { useCartStore } from '~~/stores/cart';
 
 const shopStore = useShopStore();
 const cartStore = useCartStore();

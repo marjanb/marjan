@@ -1,6 +1,6 @@
-import { writeFileSync } from "fs";
-import fetch from "node-fetch";
-import { config } from "dotenv";
+import { writeFileSync } from 'fs';
+import fetch from 'node-fetch';
+import { config } from 'dotenv';
 
 config();
 
@@ -11,13 +11,13 @@ config();
  */
 
 fetch(process.env.SHOPIFY_STOREFRONT_ENDPOINT, {
-  method: "POST",
+  method: 'POST',
   headers: {
-    "Content-Type": "application/json",
-    "X-Shopify-Storefront-Access-Token":
+    'Content-Type': 'application/json',
+    'X-Shopify-Storefront-Access-Token':
       process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
   },
-  credentials: "omit",
+  credentials: 'omit',
   body: JSON.stringify({
     variables: {},
     query: `
@@ -43,13 +43,13 @@ fetch(process.env.SHOPIFY_STOREFRONT_ENDPOINT, {
     );
     result.data.__schema.types = filteredData;
     writeFileSync(
-      "./apollo/fragmentTypes.json",
+      './apollo/fragmentTypes.json',
       JSON.stringify(result.data),
       (err) => {
         if (err) {
-          console.error("Error writing fragmentTypes file", err);
+          console.error('Error writing fragmentTypes file', err);
         } else {
-          console.log("Fragment types successfully extracted!");
+          console.log('Fragment types successfully extracted!');
         }
       }
     );

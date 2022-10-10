@@ -23,14 +23,15 @@
       </a>
       <div class="text-xs text-gray-400">
         Made with <HeartIcon class="inline w-4" /> by
-        <a href="https://github.com/justinmetros" target="_blank"
-          >@justinmetros</a
-        >
+        <a
+          href="https://github.com/justinmetros"
+          target="_blank"
+        >@justinmetros</a>
       </div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-import HeartIcon from "@heroicons/vue/solid/HeartIcon.js";
+import { HeartIcon } from '@heroicons/vue/24/outline';
 </script>

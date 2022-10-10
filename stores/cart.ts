@@ -1,35 +1,35 @@
-import { defineStore } from "pinia";
-import { useApolloClient } from "@vue/apollo-composable";
-import { cartCreate } from "~/apollo/mutations/cartCreate";
-import { cartLinesAdd } from "~/apollo/mutations/cartLinesAdd";
-import { cartLinesRemove } from "~/apollo/mutations/cartLinesRemove";
-import { checkoutUrl } from "~/apollo/queries/checkoutUrl";
-import { formatLocalePrice } from "~/utils/money";
+import { defineStore } from 'pinia';
+import { useApolloClient } from '@vue/apollo-composable';
+import { cartCreate } from '~~/apollo/mutations/cartCreate';
+import { cartLinesAdd } from '~~/apollo/mutations/cartLinesAdd';
+import { cartLinesRemove } from '~~/apollo/mutations/cartLinesRemove';
+import { checkoutUrl } from '~~/apollo/queries/checkoutUrl';
+import { formatLocalePrice } from '~~/utils/money';
 
 // TO-DO: provide apolloClient to pinia as plugin
 // https://pinia.vuejs.org/core-concepts/plugins.html#introduction
 
-export const useCartStore = defineStore("cart", {
+export const useCartStore = defineStore('cart', {
   state: () => {
     return {
       cart: {
         checkoutUrl: null,
         estimatedCost: {
           subtotalAmount: {
-            amount: "",
-            currencyCode: "USD",
+            amount: '',
+            currencyCode: 'USD',
           },
           totalTaxAmount: {
-            amount: "",
-            currencyCode: "USD",
+            amount: '',
+            currencyCode: 'USD',
           },
           totalDutyAmount: {
-            amount: "",
-            currencyCode: "USD",
+            amount: '',
+            currencyCode: 'USD',
           },
           totalAmount: {
-            amount: "",
-            currencyCode: "USD",
+            amount: '',
+            currencyCode: 'USD',
           },
         },
         id: null,
@@ -43,7 +43,7 @@ export const useCartStore = defineStore("cart", {
   },
   actions: {
     toggleCart(state?: boolean) {
-      if (typeof state === "boolean") {
+      if (typeof state === 'boolean') {
         this.cartOpen = state;
       } else {
         this.cartOpen = !this.cartOpen;
@@ -58,7 +58,7 @@ export const useCartStore = defineStore("cart", {
           mutation: cartCreate,
         });
         if (!data.cartCreate.cart.id) {
-          throw "cartCreate: error";
+          throw 'cartCreate: error';
         }
         this.cart.id = data?.cartCreate?.cart?.id ?? null;
         this.cart.checkoutUrl = data?.cartCreate?.cart?.checkoutUrl ?? null;
@@ -86,7 +86,7 @@ export const useCartStore = defineStore("cart", {
           },
         });
         if (!data.checkoutUrl.cart.checkoutUrl) {
-          throw "getCheckoutUrl: error";
+          throw 'getCheckoutUrl: error';
         }
         this.cart.checkoutUrl = data?.checkoutUrl?.cart?.checkoutUrl ?? null;
         return this.cart.checkoutUrl;
@@ -115,7 +115,7 @@ export const useCartStore = defineStore("cart", {
           },
         });
         if (!data.cartLinesAdd) {
-          throw "cartLinesAdd: error";
+          throw 'cartLinesAdd: error';
         }
         this.cart = data?.cartLinesAdd?.cart;
         this.cartOpen = true;
@@ -131,7 +131,7 @@ export const useCartStore = defineStore("cart", {
         const apolloClient = resolveClient();
         const cartId = this.cart.id;
         if (!cartId) {
-          throw "cartLinesRemove: no cartId";
+          throw 'cartLinesRemove: no cartId';
         }
         const { data } = await apolloClient.mutate({
           mutation: cartLinesRemove,
@@ -141,7 +141,7 @@ export const useCartStore = defineStore("cart", {
           },
         });
         if (!data.cartLinesRemove) {
-          throw "cartLinesRemove: error";
+          throw 'cartLinesRemove: error';
         }
         this.cart = data.cartLinesRemove.cart;
         this.cartOpen = true;
@@ -157,7 +157,7 @@ export const useCartStore = defineStore("cart", {
     subtotalAmount: (state): string => {
       const amount = +state.cart.estimatedCost.subtotalAmount.amount;
       const code = state.cart.estimatedCost.subtotalAmount.currencyCode;
-      return formatLocalePrice(+amount, "en-US", code);
+      return formatLocalePrice(+amount, 'en-US', code);
     },
     totalDutyAmount: (state): string => {
       if (!state?.cart?.estimatedCost?.totalDutyAmount) {
@@ -165,7 +165,7 @@ export const useCartStore = defineStore("cart", {
       }
       const amount = +state?.cart?.estimatedCost?.totalDutyAmount?.amount;
       const code = state?.cart?.estimatedCost?.totalDutyAmount?.currencyCode;
-      return formatLocalePrice(+amount, "en-US", code);
+      return formatLocalePrice(+amount, 'en-US', code);
     },
     totalTaxAmount: (state): string => {
       if (!state?.cart?.estimatedCost?.totalTaxAmount) {
@@ -173,12 +173,12 @@ export const useCartStore = defineStore("cart", {
       }
       const amount = +state.cart.estimatedCost.totalTaxAmount.amount;
       const code = state.cart.estimatedCost.totalTaxAmount.currencyCode;
-      return formatLocalePrice(+amount, "en-US", code);
+      return formatLocalePrice(+amount, 'en-US', code);
     },
     totalAmount: (state): string => {
       const amount = +state.cart.estimatedCost.totalAmount.amount;
       const code = state.cart.estimatedCost.totalAmount.currencyCode;
-      return formatLocalePrice(+amount, "en-US", code);
+      return formatLocalePrice(+amount, 'en-US', code);
     },
   },
 });

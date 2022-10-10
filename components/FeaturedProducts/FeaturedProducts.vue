@@ -1,24 +1,29 @@
 <template>
   <div v-if="collection">
     <ProductGrid>
-      <div v-if="title" class="col-span-2 font-bold border-b-2 md:col-span-4">
+      <div
+        v-if="title"
+        class="col-span-2 font-bold border-b-2 md:col-span-4"
+      >
         {{ title }}
       </div>
       <ProductCard
         v-for="(product, index) in collection.products.edges"
-        :index="index"
         :key="product.node.id"
+        :index="index"
         :product="product.node"
       />
     </ProductGrid>
   </div>
-  <div v-else-if="error">Error loading featured products</div>
-  <div v-else></div>
+  <div v-else-if="error">
+    Error loading featured products
+  </div>
+  <div v-else />
 </template>
 
 <script setup lang="ts">
-import { useQuery, useResult } from "@vue/apollo-composable";
-import { collectionByHandle } from "~~/apollo/queries/collectionByHandle";
+import { useQuery, useResult } from '@vue/apollo-composable';
+import { collectionByHandle } from '~~/apollo/queries/collectionByHandle';
 
 const props = defineProps<{
   collectionHandle: string;
@@ -26,11 +31,12 @@ const props = defineProps<{
   title?: string;
 }>();
 
-const handle = props.collectionHandle;
+// const handle = props.collectionHandle;
+let { collectionHandle: handle } = toRefs(props)
 const numProducts = props.numberProducts || 4;
 const { result, error } = useQuery(collectionByHandle, {
   handle,
   numProducts,
 });
-const collection = useResult(result, null, (data) => data.collectionByHandle);
+const collection = computed(() => result?.value?.collectionByHandle);
 </script>

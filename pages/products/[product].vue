@@ -7,7 +7,10 @@
       <Html>
         <Head v-if="product?.title && product?.description">
           <Title>{{ product.title }}</Title>
-          <Meta name="description" :content="product.description" />
+          <Meta
+            name="description"
+            :content="product.description"
+          />
         </Head>
       </Html>
       <ProductImage
@@ -26,26 +29,31 @@
           class="text-xl"
         />
         <ProductPrice
-          :priceRange="product.priceRange"
-          :compareAtPriceRange="product.compareAtPriceRange"
+          :price-range="product.priceRange"
+          :compare-at-price-range="product.compareAtPriceRange"
           class="mb-4 md:mb-8"
         />
-        <ProductVariants label="Select option" :variants="variants" />
+        <ProductVariants
+          label="Select option"
+          :variants="variants"
+        />
         <ProductAddToCart />
         <ProductDescription :description="product.descriptionHtml" />
       </div>
     </div>
-    <div v-else></div>
-    <div v-if="error">Error</div>
+    <div v-else />
+    <div v-if="error">
+      Error
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { useQuery, useResult } from "@vue/apollo-composable";
-import { breakpointsTailwind } from "@vueuse/core";
-import { getSrcset } from "~/utils/images";
-import { productByHandle } from "~/apollo/queries/productByHandle";
-import { productVariantsByHandle } from "~/apollo/queries/productVariantsByHandle";
+import { useQuery, useResult } from '@vue/apollo-composable';
+import { breakpointsTailwind } from '@vueuse/core';
+import { getSrcset } from '~~/utils/images';
+import { productByHandle } from '~~/apollo/queries/productByHandle';
+import { productVariantsByHandle } from '~~/apollo/queries/productVariantsByHandle';
 
 const route = useRoute();
 const handle = route.params.product;
@@ -53,31 +61,24 @@ const handle = route.params.product;
 // Get product data
 let variants = ref(null);
 const { result, error } = useQuery(productByHandle, { handle });
-const product: any = useResult(result, null, (data) => data.productByHandle);
-const initialVariants = useResult(
-  result,
-  [],
-  (data) => data.productByHandle.variants.edges
+const product: any = computed(() => result?.value?.productByHandle);
+const initialVariants = computed(() => result?.value?.productByHandle.variants.edges
 );
 variants.value = initialVariants;
 
 // Product Image
-const src = computed(() => product.value.images?.edges[0]?.node?.url ?? "");
+const src = computed(() => product.value.images?.edges[0]?.node?.url ?? '');
 const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
-const srcset = computed(() => getSrcset(src.value || ""));
+const srcset = computed(() => getSrcset(src.value || ''));
 
 // Fetch fresh inventory on client
 onMounted(() => {
   const { result: clientResult, onResult } = useQuery(
     productVariantsByHandle,
     { handle },
-    { fetchPolicy: "network-only" }
+    { fetchPolicy: 'network-only' }
   );
-  const clientVariants = useResult(
-    clientResult,
-    [],
-    (data) => data.productByHandle.variants.edges
-  );
+  const clientVariants = computed(() => result?.value?.productByHandle.variants.edges);
   variants.value = clientVariants;
 });
 </script>

@@ -3,7 +3,10 @@
     <Html>
       <Head>
         <Title>NuxtShop</Title>
-        <Meta name="description" :content="description" />
+        <Meta
+          name="description"
+          :content="description"
+        />
       </Head>
     </Html>
     <div
@@ -12,16 +15,16 @@
       Welcome to NuxtShop
     </div>
     <FeaturedProducts
-      collectionHandle="frontpage"
-      :numberProducts="4"
+      collection-handle="frontpage-1"
+      :number-products="4"
       title="Featured Products"
     />
   </div>
 </template>
 
 <script setup>
-import { storeToRefs } from "pinia";
-import { useShopStore } from "~/stores/shop";
+import { storeToRefs } from 'pinia';
+import { useShopStore } from '~~/stores/shop';
 
 const shopStore = useShopStore();
 const { description } = storeToRefs(shopStore);

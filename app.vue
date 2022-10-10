@@ -1,3 +1,22 @@
+<script lang="ts" setup>
+import '~~/assets/css/tailwind.css';
+import { useShopStore } from '~~/stores/shop';
+
+useMeta({
+  htmlAttrs: {
+    lang: 'en',
+  },
+});
+
+// Global Store Actions
+const { pending, error } = await useAsyncData('shop', () => {
+  const shopStore = useShopStore();
+  return shopStore.getShopGlobals();
+});
+
+const config = useRuntimeConfig();
+</script>
+
 <template>
   <Header />
   <Cart />
@@ -5,7 +24,7 @@
     <div
       v-if="
         config.SHOPIFY_STOREFRONT_ENDPOINT &&
-        config.SHOPIFY_STOREFRONT_ACCESS_TOKEN
+          config.SHOPIFY_STOREFRONT_ACCESS_TOKEN
       "
     >
       <NuxtPage />
@@ -16,22 +35,3 @@
   </main>
   <Footer />
 </template>
-
-<script lang="ts" setup>
-import "~/assets/css/tailwind.css";
-import { useShopStore } from "~/stores/shop";
-
-useMeta({
-  htmlAttrs: {
-    lang: "en",
-  },
-});
-
-// Global Store Actions
-const { pending, error } = await useAsyncData("shop", () => {
-  const shopStore = useShopStore();
-  return shopStore.getShopGlobals();
-});
-
-const config = useRuntimeConfig();
-</script>

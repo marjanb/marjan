@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useProductStore = defineStore("product", {
+export const useProductStore = defineStore('product', {
   state: () => {
     return {
-      selectedVariantId: "",
+      selectedVariantId: '',
     };
   },
   actions: {

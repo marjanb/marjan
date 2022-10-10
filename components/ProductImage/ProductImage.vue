@@ -7,7 +7,7 @@
     :sizes="sizes"
     :width="width"
     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-  />
+  >
 </template>
 
 <script setup lang="ts">

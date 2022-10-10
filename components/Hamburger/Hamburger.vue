@@ -5,13 +5,16 @@
     @click="handleClick"
     @keyup.enter="handleClick"
   >
-    <MenuIcon class="w-6" aria-hidden />
+    <Bars3Icon
+      class="w-6"
+      aria-hidden
+    />
   </button>
 </template>
 
 <script setup lang="ts">
-import MenuIcon from "@heroicons/vue/outline/esm/MenuIcon.js";
-import { useShopStore } from "~/stores/shop";
+import { Bars3Icon } from '@heroicons/vue/24/outline';
+import { useShopStore } from '~~/stores/shop';
 
 const shopStore = useShopStore();
 

@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { Ref } from "nuxt3/dist/app/compat/capi";
-import { useProductStore } from "~/stores/product";
+import { Ref } from "nuxt/dist/app/compat/capi";
+import { useProductStore } from "~~/stores/product";
 
 const props = defineProps<{
   label: string;

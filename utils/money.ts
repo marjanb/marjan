@@ -17,7 +17,7 @@ export const formatLocalePrice = (
   locale: string,
   currency: string
 ) => {
-  return new Intl.NumberFormat(locale, { style: "currency", currency }).format(
+  return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(
     price
   );
 };

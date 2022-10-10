@@ -12,7 +12,10 @@
         {{ totalTaxAmount }}
       </p>
     </div>
-    <div v-if="totalDutyAmount" class="flex justify-between">
+    <div
+      v-if="totalDutyAmount"
+      class="flex justify-between"
+    >
       <p>Duties:</p>
       <p>
         {{ totalDutyAmount }}
@@ -26,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useCartStore } from "~/stores/cart";
+import { storeToRefs } from 'pinia';
+import { useCartStore } from '~~/stores/cart';
 
 const cartStore = useCartStore();
 const { subtotalAmount, totalTaxAmount, totalDutyAmount, totalAmount } =

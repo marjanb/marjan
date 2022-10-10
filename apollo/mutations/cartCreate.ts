@@ -1,5 +1,5 @@
-import { gql } from "graphql-tag";
-import { cart } from "~/apollo/fragments/cart";
+import { gql } from 'graphql-tag';
+import { cart } from '~~/apollo/fragments/cart';
 
 export const cartCreate = gql`
   ${cart}

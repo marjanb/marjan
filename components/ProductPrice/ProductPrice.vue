@@ -9,7 +9,10 @@
       {{ formatPrice(priceRange?.minVariantPrice?.amount) }}
     </div>
 
-    <div v-if="isOnSale" class="ml-2 text-gray-800 line-through">
+    <div
+      v-if="isOnSale"
+      class="ml-2 text-gray-800 line-through"
+    >
       <div v-if="compareAtPriceVaries">
         {{ formatPrice(compareAtPriceRange?.minVariantPrice?.amount) }}
         -
@@ -23,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useShopStore } from "~/stores/shop";
-import { formatLocalePrice } from "~/utils/money";
+import { storeToRefs } from 'pinia';
+import { useShopStore } from '~~/stores/shop';
+import { formatLocalePrice } from '~~/utils/money';
 
 const props = defineProps<{
   priceRange: PriceRange;
@@ -34,7 +37,7 @@ const props = defineProps<{
 
 const shopStore = useShopStore();
 const { localization } = storeToRefs(shopStore);
-const currencyCode = localization.value?.country?.currency?.isoCode ?? "USD";
+const currencyCode = localization.value?.country?.currency?.isoCode ?? 'USD';
 
 const priceVaries =
   props?.priceRange?.minVariantPrice?.amount <
@@ -49,6 +52,6 @@ const isOnSale =
   props?.compareAtPriceRange?.minVariantPrice?.amount;
 
 function formatPrice(price: number) {
-  return formatLocalePrice(price, "en-US", currencyCode);
+  return formatLocalePrice(price, 'en-US', currencyCode);
 }
 </script>
