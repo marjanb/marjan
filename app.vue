@@ -22,10 +22,7 @@ const config = useRuntimeConfig();
   <Cart />
   <main class="min-h-[75vh] px-4">
     <div
-      v-if="
-        config.SHOPIFY_STOREFRONT_ENDPOINT &&
-          config.SHOPIFY_STOREFRONT_ACCESS_TOKEN
-      "
+      v-if="config.SHOPIFY_STOREFRONT_ENDPOINT && config.SHOPIFY_STOREFRONT_ACCESS_TOKEN"
     >
       <NuxtPage />
     </div>

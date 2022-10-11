@@ -15,11 +15,9 @@ export default defineNuxtPlugin((nuxtApp: NuxtApp) => {
     uri: nuxtApp.payload.config.public.SHOPIFY_STOREFRONT_ENDPOINT,
     headers: {
       'X-Shopify-Storefront-Access-Token':
-        nuxtApp.payload.config.public.  SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+        nuxtApp.payload.config.public.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
     },
   });
-
-  console.log('aaa nuxtApp', nuxtApp.payload.config.public.SHOPIFY_STOREFRONT_ENDPOINT);
 
   const cache = new InMemoryCache();
 

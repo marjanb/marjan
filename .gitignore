@@ -6,3 +6,7 @@ nuxt.d.ts
 .env
 .DS_Store
 .layer0
+dist
+
+# Local Netlify folder
+.netlify
