@@ -31,6 +31,8 @@ export const useShopStore = defineStore('shop', {
         if (!data.shop) {
           throw 'getShopData: no response';
         }
+        
+        console.log('aaa data', data.shop);
 
         this.description = data?.shop?.description ?? '';
         this.moneyFormat = data?.shop?.moneyFormat ?? '$';

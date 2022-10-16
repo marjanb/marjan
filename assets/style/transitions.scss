@@ -1,0 +1,42 @@
+// side cart
+.cart-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.cart-leave-active {
+  transition: all 0.2s;
+}
+
+.cart-enter-from,
+.cart-leave-to {
+  transform: translateX(100%);
+}
+
+// mobile menu
+.menu-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.menu-leave-active {
+  transition: all 0.2s;
+}
+
+.menu-enter-from,
+.menu-leave-to {
+  transform: translateY(6px);
+  opacity: 0;
+}
+
+// fade
+.fade-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.fade-leave-active {
+  transition: all 0.2s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

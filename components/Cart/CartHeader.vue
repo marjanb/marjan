@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { useCartStore } from '~~/stores/cart';
+
+const cartStore = useCartStore();
+const closeCart = () => cartStore.toggleCart(false);
+</script>
+
 <template>
   <div class="flex items-center h-12 mb-4 border-b-2 border-black md:h-16">
     <button
@@ -6,17 +13,8 @@
       @click="closeCart"
       @keyup.enter="closeCart"
     >
-      <XMarkIcon class="inline w-5" />
+      <Icon name="bx:x" />
     </button>
     <div>Cart</div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useCartStore } from '~~/stores/cart';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
-
-const cartStore = useCartStore();
-
-const closeCart = () => cartStore.toggleCart(false);
-</script>

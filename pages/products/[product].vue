@@ -1,3 +1,38 @@
+<script setup lang="ts">
+import { useQuery, useResult } from '@vue/apollo-composable';
+import { breakpointsTailwind } from '@vueuse/core';
+import { getSrcset } from '@@/utils/images';
+import { productByHandle } from '@@/apollo/queries/productByHandle';
+import { productVariantsByHandle } from '@@/apollo/queries/productVariantsByHandle';
+
+const route = useRoute();
+const handle = route.params.product;
+
+// Get product data
+let variants = ref(null);
+const { result, error } = useQuery(productByHandle, { handle });
+const product: any = computed(() => result?.value?.productByHandle);
+const initialVariants = computed(() => result?.value?.productByHandle.variants.edges
+);
+variants.value = initialVariants;
+
+// Product Image
+const src = computed(() => product.value.images?.edges[0]?.node?.url ?? '');
+const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
+const srcset = computed(() => getSrcset(src.value || ''));
+
+// Fetch fresh inventory on client
+onMounted(() => {
+  const { result: clientResult, onResult } = useQuery(
+    productVariantsByHandle,
+    { handle },
+    { fetchPolicy: 'network-only' }
+  );
+  const clientVariants = computed(() => result?.value?.productByHandle.variants.edges);
+  variants.value = clientVariants;
+});
+</script>
+
 <template :key="handle">
   <section class="container mx-auto">
     <div
@@ -48,37 +83,4 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { useQuery, useResult } from '@vue/apollo-composable';
-import { breakpointsTailwind } from '@vueuse/core';
-import { getSrcset } from '~~/utils/images';
-import { productByHandle } from '~~/apollo/queries/productByHandle';
-import { productVariantsByHandle } from '~~/apollo/queries/productVariantsByHandle';
 
-const route = useRoute();
-const handle = route.params.product;
-
-// Get product data
-let variants = ref(null);
-const { result, error } = useQuery(productByHandle, { handle });
-const product: any = computed(() => result?.value?.productByHandle);
-const initialVariants = computed(() => result?.value?.productByHandle.variants.edges
-);
-variants.value = initialVariants;
-
-// Product Image
-const src = computed(() => product.value.images?.edges[0]?.node?.url ?? '');
-const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
-const srcset = computed(() => getSrcset(src.value || ''));
-
-// Fetch fresh inventory on client
-onMounted(() => {
-  const { result: clientResult, onResult } = useQuery(
-    productVariantsByHandle,
-    { handle },
-    { fetchPolicy: 'network-only' }
-  );
-  const clientVariants = computed(() => result?.value?.productByHandle.variants.edges);
-  variants.value = clientVariants;
-});
-</script>

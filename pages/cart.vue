@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useCartStore} from '~~/stores/cart';
+import { useCartStore } from '~~/stores/cart';
 
 const cartStore = useCartStore();
 const lineItems = computed(() => cartStore.lineItems);
@@ -17,7 +17,7 @@ const cart = ref(null);
         />
       </Head>
     </Html>
-    <div class="container mx-auto my-8 text-center">
+    <div class="container my-8 text-center">
       <section ref="cart">
         <div>
           <div v-if="lineItems.length">

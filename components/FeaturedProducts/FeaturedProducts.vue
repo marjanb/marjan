@@ -1,24 +1,26 @@
 <template>
-  <div v-if="collection">
-    <ProductGrid>
+  <div>
+    <div v-if="collection">
       <div
         v-if="title"
-        class="col-span-2 font-bold border-b-2 md:col-span-4"
+        class="h1 h1__spacing"
       >
         {{ title }}
       </div>
-      <ProductCard
-        v-for="(product, index) in collection.products.edges"
-        :key="product.node.id"
-        :index="index"
-        :product="product.node"
-      />
-    </ProductGrid>
+      <ProductGrid>
+        <ProductCard
+          v-for="(product, index) in collection.products.edges"
+          :key="product.node.id"
+          :index="index"
+          :product="product.node"
+        />
+      </ProductGrid>
+    </div>
+    <div v-else-if="error">
+      Error loading featured products
+    </div>
+    <div v-else />
   </div>
-  <div v-else-if="error">
-    Error loading featured products
-  </div>
-  <div v-else />
 </template>
 
 <script setup lang="ts">
@@ -32,7 +34,7 @@ const props = defineProps<{
 }>();
 
 // const handle = props.collectionHandle;
-let { collectionHandle: handle } = toRefs(props)
+let { collectionHandle: handle } = toRefs(props);
 const numProducts = props.numberProducts || 4;
 const { result, error } = useQuery(collectionByHandle, {
   handle,

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import '~~/assets/css/tailwind.css';
-import { useShopStore } from '~~/stores/shop';
+import { useShopStore } from '@@/stores/shop';
 
 useMeta({
   htmlAttrs: {
@@ -18,17 +17,14 @@ const config = useRuntimeConfig();
 </script>
 
 <template>
-  <Header />
-  <Cart />
-  <main class="min-h-[75vh] px-4">
-    <div
-      v-if="config.SHOPIFY_STOREFRONT_ENDPOINT && config.SHOPIFY_STOREFRONT_ACCESS_TOKEN"
-    >
-      <NuxtPage />
-    </div>
-    <div v-else>
-      <GettingStarted />
-    </div>
-  </main>
-  <Footer />
+  <div class="site">
+    <Header />
+    <Cart />
+    <main class="site-content">
+      <div class="container">
+        <NuxtPage />
+      </div>
+    </main>
+    <Footer />
+  </div>
 </template>

@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  parser: 'vue-eslint-parser',
   env: {
     browser: true,
     node: true,
@@ -14,12 +15,15 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:nuxt/recommended',
-    'plugin:vue/vue3-recommended',
+    'plugin:vue/vue3-strongly-recommended',
   ],
   plugins: ['@typescript-eslint', 'import'],
   rules: {
-    quotes: [2, 'single', {avoidEscape: true}],
+    'semi': [2, 'always'],
+    'object-curly-spacing': ['error', 'always'],
+    quotes: [2, 'single', { avoidEscape: true }],
     'vue/script-setup-no-uses-vars': 'off',
     'vue/multi-word-component-names': 'off',
     'max-len': ['error', 120, 2, {

@@ -1,0 +1,15 @@
+.btn {
+  @apply inline-flex text-center justify-center items-center h-11 text-white px-6 font-medium text-sm rounded  focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-pointer;
+
+  &__default {
+    @apply bg-pink-600 hover:bg-pink-700 focus:bg-pink-700 active:bg-pink-600;
+  }
+
+  &__sn {
+    @apply bg-indigo-700 hover:bg-indigo-800 focus:bg-indigo-800 active:bg-indigo-600;
+  }
+
+  &__full {
+    @apply w-full;
+  }
+}

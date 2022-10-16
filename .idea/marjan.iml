@@ -6,6 +6,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.output" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.git" />
+      <excludeFolder url="file://$MODULE_DIR$/.netlify" />
+      <excludeFolder url="file://$MODULE_DIR$/NITRO_PRESET=netlify" />
+      <excludeFolder url="file://$MODULE_DIR$/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

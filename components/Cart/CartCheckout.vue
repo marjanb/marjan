@@ -2,7 +2,7 @@
   <a
     v-if="checkoutUrl"
     :href="checkoutUrl"
-    class="block py-4 font-bold text-center text-white bg-black"
+    class="btn btn__default btn__full"
   >Checkout</a>
 </template>
 

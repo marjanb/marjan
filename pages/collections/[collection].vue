@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto">
+  <section>
     <div v-if="collection">
       <Html>
         <Head>

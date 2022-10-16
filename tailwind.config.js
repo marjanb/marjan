@@ -9,7 +9,14 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      aspectRatio: {
+        miniCart: '925 / 617',
+      },
+      maxWidth: {
+        miniCart: '130px',
+      }
+    },
     fontFamily: {
       sans: ['DM Mono', 'sans-serif'],
       mono: ['DM Mono', 'sans-serif'],

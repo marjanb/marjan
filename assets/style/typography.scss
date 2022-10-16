@@ -1,0 +1,7 @@
+.h1 {
+  @apply text-4xl;
+
+  &__spacing {
+    @apply pt-4 pb-8;
+  }
+}
